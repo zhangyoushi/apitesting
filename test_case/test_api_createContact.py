@@ -6,8 +6,10 @@ import unittest
 import config.settings as a
 import common.Login
 import common.Common
+import allure
 
 
+@allure.feature('test_CreateContact')
 class TestTenantContact(unittest.TestCase):
 
     @classmethod
@@ -20,6 +22,7 @@ class TestTenantContact(unittest.TestCase):
         }
 
     # 新建租客联系人姓名必填
+    @allure.story('createContact_need_name')
     def test_name(self):
         path = '/web/tenant-contacts'
 
@@ -45,6 +48,7 @@ class TestTenantContact(unittest.TestCase):
         sleep(1)
 
     # 新建租客联系人手机号必须为11位数字
+    @allure.story('createContact_tel_need_11numbers')
     def test_tel(self):
         path = '/web/tenant-contacts'
 
@@ -64,6 +68,7 @@ class TestTenantContact(unittest.TestCase):
         assert json.loads(res.text)['error'] == '手机号码长度必须为11位'
 
     # 新建租客联系人邮箱必须符合邮箱格式
+    @allure.story('createContact_need_correct_email')
     def test_email(self):
         path = '/web/tenant-contacts'
 
@@ -84,6 +89,7 @@ class TestTenantContact(unittest.TestCase):
         sleep(1)
 
     # 新建租客联系人住址必须小于200字符
+    @allure.story('createContact_address')
     def test_address(self):
         path = '/web/tenant-contacts'
         address = common.Common.creat_str()
@@ -103,8 +109,8 @@ class TestTenantContact(unittest.TestCase):
         assert res.status_code == 400
         assert json.loads(res.text)['error'] == '地址最多不能超过200'
 
-
     # 新建租客联系
+    @allure.story('test_createContact')
     def test_create_contacts(self):
         path = '/web/tenant-contacts'
 

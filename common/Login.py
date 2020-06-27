@@ -13,4 +13,6 @@ def login():
 
     data = json.loads(res.text)
 
+    print(data)
+
     return 'Bearer ' + data['access_token']

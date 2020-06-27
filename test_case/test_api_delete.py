@@ -6,8 +6,10 @@ import unittest
 import config.settings as a
 import common.Login
 from common.Common import *
+import allure
 
 
+@allure.feature('ContactDelete')
 class TestTenantContact(unittest.TestCase):
 
     @classmethod
@@ -20,6 +22,7 @@ class TestTenantContact(unittest.TestCase):
             'content-type': 'application/json; charset=utf-8'
         }
 
+    @allure.story('test_Contact_Delete')
     def test_delete_1(self):
         # 创建删除的租客
         t_id = check_tenant(self.token, '测试删除联系人')
@@ -35,6 +38,7 @@ class TestTenantContact(unittest.TestCase):
         t_status = check_tenant(self.token, '测试删除联系人')
         assert len(t_status) == 0
 
+    @allure.story('test_Batch_Delete')
     def test_batch_delete(self):
 
         path = '/web/tenant-contacts/'

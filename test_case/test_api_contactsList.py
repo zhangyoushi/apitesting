@@ -4,8 +4,10 @@ import unittest
 import config.settings as a
 import common.Login
 import common.Common
+import allure
 
 
+@allure.feature('test_ContactList')
 class TestTenantContactCheck(unittest.TestCase):
 
     @classmethod
@@ -30,6 +32,7 @@ class TestTenantContactCheck(unittest.TestCase):
         }
 
     # 通过姓名搜索联系人
+    @allure.story('test_search_by_name')
     def test_search_by_name(self):
 
         path = '/web/tenant-contacts'
@@ -44,6 +47,7 @@ class TestTenantContactCheck(unittest.TestCase):
         assert self.target in t_dict['items']
 
     # 通过电话号码搜索联系人
+    @allure.story('test_search_by_tel')
     def test_search_by_tel(self):
 
         path = '/web/tenant-contacts'
@@ -58,6 +62,7 @@ class TestTenantContactCheck(unittest.TestCase):
         self.assertIn(self.target, t_dict['items'])
 
     # 通过公司搜索联系人
+    @allure.story('test_search_by_companyName')
     def test_search_by_companyName(self):
 
         path = '/web/tenant-contacts'
@@ -72,6 +77,7 @@ class TestTenantContactCheck(unittest.TestCase):
         self.assertIn(self.target, t_dict['items'])
 
     # 通过公司筛选
+    @allure.story('test_screen_by_companyName')
     def test_screen_by_companyName(self):
 
         path = '/web/tenant-contacts'
@@ -86,6 +92,7 @@ class TestTenantContactCheck(unittest.TestCase):
         self.assertIn(self.target, t_dict['items'])
 
     # 通过是否默认联系人筛选
+    @allure.story('test_screen_by_default')
     def test_screen_by_default(self):
 
         path = '/web/tenant-contacts'

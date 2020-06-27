@@ -4,8 +4,10 @@ import unittest
 import config.settings as a
 import common.Login
 import common.Common
+import allure
 
 
+@allure.feature('test_Contact_Repeat')
 class TestTenantContactCheck(unittest.TestCase):
 
     @classmethod
@@ -29,6 +31,7 @@ class TestTenantContactCheck(unittest.TestCase):
              "tenantId": 0
         }
 
+    @allure.story('test_email_repeat')
     def test_email_repeat(self):
         path = '/web/tenant-contacts/check'
 
@@ -48,6 +51,7 @@ class TestTenantContactCheck(unittest.TestCase):
 
         assert res_data['emailRepeat'] is True
 
+    @allure.story('test_tel_repeat')
     def test_tel_repeat(self):
         path = '/web/tenant-contacts/check'
 
@@ -67,6 +71,7 @@ class TestTenantContactCheck(unittest.TestCase):
 
         assert res_data['telRepeat'] is True
 
+    @allure.story('test_email_and_tel_repeat')
     def test_all_repeat(self):
         path = '/web/tenant-contacts/check'
 
